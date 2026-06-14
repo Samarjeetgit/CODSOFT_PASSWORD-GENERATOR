@@ -22,7 +22,7 @@ def generate_secure_password(length, use_digits, use_special):
     pool = lower + upper + digits + special
     if not pool: return "", 0
     
-    # Enforce standard complexity constraints dynamically
+
     password = [
         secrets.choice(lower),
         secrets.choice(upper)
@@ -30,11 +30,11 @@ def generate_secure_password(length, use_digits, use_special):
     if use_digits: password.append(secrets.choice(digits))
     if use_special: password.append(secrets.choice(special))
     
-    # Securely fill remaining constraints
+
     while len(password) < length:
         password.append(secrets.choice(pool))
         
-    # Destructure sequential pattern cleanly using CSPRNG shuffling
+   
     secrets.SystemRandom().shuffle(password)
     
     final_password = "".join(password)
@@ -46,7 +46,7 @@ def main():
     try:
         length = int(input("Length (Min 8, Max 2048): ").strip())
         
-        # Enforce resource boundaries and policy rules
+       
         if length < 8:
             print("Security Violation: Minimum length must be 8.")
             return
